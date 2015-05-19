@@ -1,0 +1,73 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class Explosie : MonoBehaviour {
+
+    List<Collider> _TriggerList = new List<Collider>();
+
+    public AudioClip Explosion;
+    public AudioClip Allahu;
+
+    bool ShouldExplode = false;
+
+    float Timer = 0;
+
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () 
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (!ShouldExplode)
+            {
+                this.GetComponent<AudioSource>().PlayOneShot(Allahu);
+                ShouldExplode = true;
+            }
+        }
+
+        if (ShouldExplode)
+        {
+            Explode();
+            
+        }
+	}
+
+    void Explode()
+    {
+        Timer += Time.deltaTime;
+        
+        if (Timer > 1.32f)
+        {
+            this.GetComponent<AudioSource>().PlayOneShot(Explosion);
+
+            foreach (Collider _Object in _TriggerList)
+            {
+                _Object.gameObject.GetComponent<Rigidbody>().AddExplosionForce(4098, this.transform.position, this.GetComponent<SphereCollider>().radius);
+            }
+
+            ShouldExplode = false;
+        }
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (!_TriggerList.Contains(col))
+        {
+            _TriggerList.Add(col);
+            Debug.Log("Object Added!");
+        }
+    }
+
+    void OnTriggerExit(Collider col)
+    {
+        if (_TriggerList.Contains(col))
+        {
+            _TriggerList.Remove(col);
+        }
+    }
+}

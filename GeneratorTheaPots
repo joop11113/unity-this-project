@@ -1,0 +1,42 @@
+using UnityEngine;
+using System.Collections;
+
+public class Generator : MonoBehaviour
+{
+
+    public GameObject Teapot;
+    public int numberOfTeapots;
+    public int min, max;
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKey("space"))
+        {
+            PlaceTeapots();
+        }
+    }
+
+    void PlaceTeapots()
+    {
+        for (int i = 0; i < numberOfTeapots; i++)
+        {
+            Instantiate(Teapot, GeneratedPosition(), Quaternion.identity);
+        }
+    }
+
+    Vector3 GeneratedPosition()
+    {
+        int x, y, z;
+        x = UnityEngine.Random.Range(-13, 40);
+        y = UnityEngine.Random.Range(4, 6);
+        z = UnityEngine.Random.Range(3, -20);
+        return new Vector3(x, y, z);
+
+    }
+}

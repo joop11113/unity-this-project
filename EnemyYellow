@@ -1,0 +1,64 @@
+using UnityEngine;
+using System.Collections;
+
+public class geelEnemy : MonoBehaviour {
+
+    public float speed;
+    public float ance;
+	// Use this for initialization
+    void Start()
+    {
+
+        transform.position = new Vector3(7, 1, 0);
+
+        transform.rotation = Quaternion.identity;
+    }
+	
+	// Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    void OnCollisionEnter(Collision col){
+     
+    if(col.gameObject.tag == "Reset")
+        {
+            transform.position = new Vector3(7, 1, 0);
+            
+            transform.rotation = Quaternion.identity;
+
+    }   
+}
+
+public void Dance2(){
+
+            transform.position += Vector3.up * Time.deltaTime * speed;
+            
+
+            if (transform.position.y > 3.4)
+            {
+                speed = -speed; 
+            };
+
+            if (transform.position.y < 1.3)
+            {
+                speed = -speed;
+            }
+
+            transform.position += Vector3.left * Time.deltaTime * speed;
+
+
+            if (transform.position.x > 3.4)
+            {
+                speed = -speed;
+            };
+
+            if (transform.position.x < -0.1)
+            {
+                speed = -speed;
+            }
+        }
+}
+
+

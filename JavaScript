@@ -1,0 +1,64 @@
+var loadCount = 0;
+var hero;
+var enemies=[];
+//var bullet.speedX = 3;
+
+
+function init() {
+    console.log("init called");        
+    itemsToLoad = 6; // <-- verander dit in het aantal afbeeldingen er ingeladen moet worden
+
+    //alle afbeeldingen volgen hier	
+    blueImage=preload("assets/blue.png");
+    greenImage=preload("assets/green.png");
+	orangeImage=preload("assets/orange.png");
+	purpleImage=preload("assets/purple.png");
+	redImage=preload("assets/red.png");
+	whiteImage=preload("assets/white.png");
+    
+	
+	
+    switchGameState(GAME_STATE_IDLE);
+	
+}
+
+function preload(path){
+        img = new Image();
+        img.src = path;
+        img.onload = itemLoaded;
+        return img;
+ }
+
+ function itemLoaded(event) {
+    //leave this function as it is
+    console.log("itemLoaded called")
+
+    loadCount++;
+    console.log("loading:" + loadCount)
+
+    if (loadCount >= itemsToLoad) {
+        console.log("everything loaded...");
+        makeKineticImages();
+    }
+
+}
+
+function doNothing(){
+  //do nothing
+}
+
+function makeKineticImages() {
+   console.log( "makeKineticImages");
+
+    // all images here! Even those you do not use in the start of the game
+
+    blue = new Kinetic.Image({x: 0,y: 0,image: blueImage});
+	green = new Kinetic.Image({x: 0,y: 0,image: greenImage});
+	orange = new Kinetic.Image({x: 0,y: 0,image: orangeImage});
+	purple = new Kinetic.Image({x: 0,y: 0,image: purpleImage});
+    red = new Kinetic.Image({x: 0,y: 0,image: redImage});
+	white = new Kinetic.Image({x:0,y: 0,image: whiteImage});
+      
+    
+    switchGameState(GAME_STATE_INIT_LEVEL_1);
+}

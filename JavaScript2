@@ -1,0 +1,170 @@
+function start(){
+	// alle plaatjes in het level plaatsen, beginposities.
+	
+	gameObjectsLayer.removeChildren();
+	
+	gameObjectsLayer.add(blue);
+	gameObjectsLayer.add(green);
+	gameObjectsLayer.add(orange);
+	gameObjectsLayer.add(purple);
+	gameObjectsLayer.add(red);
+	gameObjectsLayer.add(white);
+	gameObjectsLayer.draw();
+	
+	
+	blue.setX(0);
+	blue.setY(100);
+	
+	green.setY(500);
+	green.setX(0);
+	
+	orange.setX(0);
+	orange.setY(200);
+	
+	purple.setX(0);
+	purple.setY(400);
+	
+	red.setX(0);
+	red.setY(300);
+	
+	white.setX(0);
+	white.setY(0);
+	
+	console.log("Hallo daar");
+	
+	
+
+	// dit tekent het pas echt
+			
+	switchGameState(GAME_STATE_LEVEL_1);
+}
+
+
+
+/*     
+var speedEnemyX= (2)
+var speedEnemy2X= (2)
+var speedEnemy3X= (2)
+var speedEnemy4X= (2)
+*/
+function level() {
+	gameLoop=setInterval(update,20);  
+	//update();
+	//20 is de 'wachttijd in milliseconden, de functie 'update' wordt om de 0.02 s aangeroepen.
+	// Dit voorbeeld is dus 50 fps (mits de hardware het aankan)
+	
+}
+
+function update(){
+/*	
+	enemy.setX(enemy.getX() + speedEnemyX );
+	
+	if(enemy.getX()<0){
+	   speedEnemyX=2;
+	   enemy.setY(enemy.getY()+30
+	)}
+	
+	if(enemy.getX() > (700-enemy.getWidth())){
+		speedEnemyX=-2;
+		enemy.setY(enemy.getY()+30
+	
+	)}
+	
+	enemy2.setX(enemy2.getX() + speedEnemy2X );
+	
+		if(enemy2.getX()<0){
+	   speedEnemy2X=2;
+	   enemy2.setY(enemy2.getY()+30
+	)}
+	
+	if(enemy2.getX() > (700-enemy2.getWidth())){
+		speedEnemy2X=-2;
+		enemy2.setY(enemy2.getY()+30
+	
+	)}
+	
+	
+	
+	enemy3.setX(enemy3.getX() + speedEnemy3X );
+	
+	if(enemy3.getX()<0){
+	   speedEnemy3X=2;
+	   enemy3.setY(enemy3.getY()+30
+	)}
+	
+	if(enemy3.getX() > (700-enemy3.getWidth())){
+		speedEnemy3X=-2;
+		enemy3.setY(enemy3.getY()+30
+	
+	)}
+	
+	
+	
+	enemy4.setX(enemy4.getX() + speedEnemy4X );
+	
+	if(enemy4.getX()<0){
+	   speedEnemy4X=2;
+	   enemy4.setY(enemy4.getY()+30
+	)}
+	
+	if(enemy4.getX() > (700-enemy4.getWidth())){
+		speedEnemy4X=-2;
+		enemy4.setY(enemy4.getY()+30
+	
+	)}
+	
+	
+
+ if(keyPressList[32] && (bullet.getY()<-10)){
+  
+  bullet.setX(player.getX()-8);
+  bullet.setY(player.getY()-7);
+  
+ }
+ bullet.setY(bullet.getY()-6);
+ 
+ 
+ if(collision(enemy,player)){
+	 enemy.remove();
+	 player.remove();
+	 enemy.setX(-800);
+	 player.setX(-900);
+	 }
+	 */
+	  if(collision(orange,green)){
+	 green.setX(0);
+	 green.setY(500)
+	
+	 }
+
+	
+	
+
+		
+
+/*right*/if(keyPressList[37] && green.getX()>0) green.setX(green.getX()-5);
+/*left*/if(keyPressList[39] && green.getX()<500) green.setX(green.getX()+5);
+/*up*/if(keyPressList[38] && green.getY()>0) green.setY(green.getY()-5);
+/*down*/if(keyPressList[40] && green.getY()<500) green.setY(green.getY()+5);
+
+
+
+/*
+if(keyPressList[37] && spaceShip2.getX()>0) spaceShip2.setX(spaceShip2.getX()-5);
+if(keyPressList[39] && spaceShip2.getX()<873) spaceShip2.setX(spaceShip2.getX()+5);
+if(keyPressList[38] && spaceShip2.getY()>0) spaceShip2.setY(spaceShip2.getY()-5);
+if(keyPressList[40] && spaceShip2.getY()<447) spaceShip2.setY(spaceShip2.getY()+5);
+*/
+
+	// if (collision(spaceShip, enemy)){
+	// 	enemy.setY(500);
+	// }
+
+
+	gameObjectsLayer.draw();
+	
+	}
+	
+	
+	
+	

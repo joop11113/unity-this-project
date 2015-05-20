@@ -1,0 +1,98 @@
+using UnityEngine;
+using System.Collections;
+
+public class hero : MonoBehaviour
+{
+
+    public float speed = 3f;
+    public string Name = "Start";
+    public blauwEnemy BE;
+    public geelEnemy GE;
+    
+    // Use this for initialization
+    void Start()
+    {
+        //dit geeft een positie aan.s
+        transform.position = new Vector3(0, 1, 0);
+
+        //dit reset de rotatie naar (0,0,0)
+        transform.rotation = Quaternion.identity;
+
+        BE = GameObject.Find("enemy").GetComponent<blauwEnemy>();
+        GE = GameObject.Find("enemy2").GetComponent<geelEnemy>();
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+
+        if (col.gameObject.tag == "Reset")
+        {
+            transform.position = new Vector3(0, 1, 0);
+
+            transform.rotation = Quaternion.identity;
+
+        }
+    }
+     
+
+    // Update is called once per frame
+    void Update()
+    {
+
+
+        if (Input.GetKey(KeyCode.C))
+        {
+            transform.Translate(Vector3.up * speed * Time.deltaTime);
+
+
+        }
+
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            transform.Translate(Vector3.left * speed * Time.deltaTime);
+
+
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.Translate(Vector3.right * speed * Time.deltaTime);
+
+
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Rotate(0f, 1.2f, 0f);
+
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Rotate(0f, -1.2f, 0f);
+
+        }
+        
+        if ((transform.eulerAngles.y > 120f) && (transform.eulerAngles.y < 200f))
+        {
+            Debug.Log ("dance");
+            GE.Dance2();
+            Name = "Geert";
+        }
+
+        if ((transform.eulerAngles.y > -20f) && (transform.eulerAngles.y < 40f))
+        {
+            Debug.Log("dance");
+            BE.Dance();
+            Name = "Bert";
+        }
+    }
+   
+   
+
+    void OnGUI()
+    {
+        GUI.Label(new Rect(100, 450, 1450, 1450), Name.ToString());
+    }
+}
